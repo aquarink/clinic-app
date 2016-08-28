@@ -1,3 +1,33 @@
+<?php
+error_reporting(0);
+session_start();
+if(isset($_SESSION['adm'])) {
+  include_once 'koneksi.php';
+
+  if(isset($_GET['hapus'])) {
+    if(empty($_GET['hapus'])) {
+      echo "ID KOSONG";
+    } else {
+      $idnya = $_GET['haspus'];
+      $dataCek = mysql_query('SELECT * FROM pasien_tb WHERE id_pasien = $idnya');
+      $cek = mysql_num_rows($dataCek);
+      if($cek > 0) {
+        $delData = mysql_query('DELETE FROM pasien_tb WHERE id_pasien = $idnya');
+        if($delData) {
+          header('location: daftarpasien.php');
+        } else {
+          echo "Error";
+        }
+      } else {
+        header('location: daftarpasien.php?error=PasienTidakAda');
+      }
+    }
+  }
+} else {
+  header('location: admin.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +73,9 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a class="active"  href="admin.php">Daftar Pasien</a></li>
+            <li><a href="admin.php">Antrian & Rekam Medis</a></li>
             <li><a href="daftarpasien.php">List Pasien</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -61,29 +92,30 @@
         </div>
         <table class="table">
           <tr>
-            <th>NOMOR PASIEN</th>
+            <th>NO</th>
+            <th>ID PASIEN</th>
             <th>NAMA</th>
-            <th>ALAMAT ID</th>
+            <th>TELEPON</th>
+            <th>ALAMAT</th>
             <th class="text-center">Action</th>
           </tr>
+          <?php
+          $dataPasien = mysql_query('SELECT * FROM pasien_tb');
+          $no = 1;
+          while ($pasien = mysql_fetch_array($dataPasien)) {
+          ?>
           <tr>
-            <td style="font-align: left">1</td>
-            <td style="font-align: left">News</td>
-            <td style="font-align: left">News Cate</td>
-            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            <td style="font-align: left"><?php echo $no; ?></td>
+            <td style="font-align: left"><?php echo $pasien['id_pasien']; ?></td>
+            <td style="font-align: left"><?php echo $pasien['nama']; ?></td>
+            <td style="font-align: left"><?php echo $pasien['telepon']; ?></td>
+            <td style="font-align: left"><?php echo $pasien['alamat']; ?></td>
+            <td class="text-center">
+              <a href="editpasien.php?id=<?php echo $pasien['id_pasien']; ?>" class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+              <a href="daftarpasien.php?hapus=<?php echo $pasien['id_pasien']; ?>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a>
+            </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Products</td>
-            <td>Main Products</td>
-            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Blogs</td>
-            <td>Parent Blogs</td>
-            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-          </tr>
+          <?php $no++; } ?>
         </table>
       </div><!--/.box-->
     </div><!--/.container-->

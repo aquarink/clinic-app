@@ -82,8 +82,9 @@ if(isset($_SESSION['adm'])) {
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a class="active"  href="#">Daftar Pasien</a></li>
+            <li><a href="#">Antrian & Rekam Medis</a></li>
             <li><a href="daftarpasien.php">List Pasien</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -99,7 +100,7 @@ if(isset($_SESSION['adm'])) {
           <br>
           <br>
           <div class="container center_div" style="width: 100%">
-            <div class="col-md-4" style="border: 1px solid #000">
+            <div class="col-md-4">
               <h2 style="margin-bottom:0px; display:block">Antrian Pasien</h2>
               <h5 style="color:blue">Isi nomor pasien untuk mencari data pasien</h5>
               <p class="lead">
@@ -124,8 +125,8 @@ if(isset($_SESSION['adm'])) {
                 </p>
               </div>
             </div>
-            <div class="col-md-8" style="border: 1px solid #000">
-              <h4 style="margin-bottom:0px; display:block">
+            <div class="col-md-8">
+              <h4 style="margin-bottom:0px; display:block">Rekam Medis
                 <?php
                 if(isset($_GET['nppas'])) {
                   $idPas = $_GET['nppas'];

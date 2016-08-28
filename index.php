@@ -26,6 +26,12 @@
     width:80% /* value of your choice which suits your alignment */
   }
   </style>
+  <script type="text/javascript">
+    function openUrl() {
+      var win = window.open('admin.php', '_blank');
+      win.focus();
+    }
+  </script>
 </head><!--/head-->
 
 <body data-spy="scroll" data-target="#navbar" data-offset="0">
@@ -48,6 +54,7 @@
             <li><a href="#portfolio">Tentang Klinik</a></li>
             <li><a href="#about-us">Jadwal Praktek</a></li>
             <li><a href="#contact">Kontak</a></li>
+            <li><a onclick="openUrl();"><i class="icon-user"></i> Admin</a></li>
           </ul>
         </div>
       </div>
@@ -109,11 +116,11 @@
               <form class="form-group" action="hasil.php" method="post">
                 <input type="text" name="nama" class="form-control" placeholder="Masukan Nama">
                 <br>
-                <input type="email" name="email" class="form-control" placeholder="Masukan Email">
-                <br>
                 <input type="tel" name="telpon" class="form-control" placeholder="Masukan Telpon">
                 <br>
-                <textarea name="pesan" class="form-control" placeholder="Masukan Pesan"></textarea>
+                <input type="email" name="email" class="form-control" placeholder="Masukan Email">
+                <br>
+                <textarea type="text" name="alamat" class="form-control" placeholder="Masukan Alamat"></textarea>
                 <br>
                 <b style="color: red"><?php if(isset($error)) { echo $error; } ?></b>
                 <br>
@@ -131,7 +138,25 @@
       <div class="box">
         <div class="center gap">
           <h2>Klinik Fuyi Healthouse</h2>
-          <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+          <p class="lead">
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+            turpis egestas. Vestibulum tortor quam, feugiat vitae.<br>
+            fuhyi adalah Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac<br>
+          </p>
         </div><!--/.center-->
       </div><!--/.box-->
     </div><!--/.container-->

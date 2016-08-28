@@ -6,9 +6,9 @@ if(isset($_POST['regis'])) {
   $nama = $_POST['nama'];
   $email = $_POST['email'];
   $telpon = $_POST['telpon'];
-  $pesan = $_POST['pesan'];
+  $alamat = $_POST['alamat'];
 
-  if(empty($nama) || empty($email) || empty($telpon) || empty($pesan)) {
+  if(empty($nama) || empty($email) || empty($telpon) || empty($alamat)) {
     $error = 'Kolom Kosong harap isi';
   } else {
     $dataPasien = mysql_query("SELECT * FROM pasien_tb WHERE email = '$email'");
@@ -20,7 +20,7 @@ if(isset($_POST['regis'])) {
     } else {
       $tgl = date('Y-m-d h:i:s');
       $onlyTgl = date('Y-m-d');
-      $simpanDataPasien = mysql_query("INSERT INTO pasien_tb (nama,email,telepon,status,sekarang) VALUES('$nama','$email','$telpon',1,'$tgl')");
+      $simpanDataPasien = mysql_query("INSERT INTO pasien_tb (nama,alamat,email,telepon,status,sekarang) VALUES('$nama','$alamat','$email','$telpon',1,'$tgl')");
       if($simpanDataPasien) {
         $dataPasen = mysql_query("SELECT * FROM pasien_tb ORDER BY id_pasien DESC LIMIT 1");
         $cekPasen = mysql_fetch_assoc($dataPasen);
@@ -31,7 +31,7 @@ if(isset($_POST['regis'])) {
         $noAntri = $cekAntri['no_antri']+1;
         $simpanDataAntri = mysql_query("INSERT INTO antrian_tb (no_antri,tanggal) VALUES('$noAntri','$onlyTgl')");
         if($simpanDataAntri) {
-          $urlLink = 'http://192.168.1.10/darja/hasil.php?nama='.$nama.'&email='.$email.'&telp='.$telpom.'&nppas='.$noPasien.'&noantri='.$noAntri.'';
+          $urlLink = 'hasil.php?nama='.$nama.'&alamat='.$alamat.'&email='.$email.'&telp='.$telpon.'&nppas='.$noPasien.'&noantri='.$noAntri.'';
           header('location: '.$urlLink);
         } else {
           $error = 'Query Error';
@@ -60,7 +60,7 @@ if(isset($_POST['antri'])) {
     $noAntri = $cekAntri['no_antri']+1;
     $simpanDataAntri = mysql_query("INSERT INTO antrian_tb (no_antri,tanggal) VALUES('$noAntri','$onlyTgl')");
     if($simpanDataAntri) {
-      $urlLink = 'http://192.168.1.10/darja/hasil.php?nama='.$nama.'&email='.$email.'&telp='.$telpom.'&nppas='.$noPasien.'&noantri='.$noAntri.'';
+      $urlLink = 'hasil.php?nama='.$nama.'&alamat='.$alamat.'&email='.$email.'&telp='.$telpon.'&nppas='.$noPasien.'&noantri='.$noAntri.'';
       header('location: '.$urlLink);
     } else {
       $error = 'Query Error';
@@ -132,11 +132,12 @@ if(isset($_POST['antri'])) {
           <br>
           <br>
           <h2 style="margin-bottom:0px; display:block">Pendaftaran Pasien Berhasil</h2>
-          <h3><?php if(isset($_GET['nama'])) { echo strtoupper($_GET['nama']); } ?></h3>
-          <h3><?php if(isset($_GET['email'])) { echo strtoupper($_GET['email']); } ?></h3>
-          <h3><?php if(isset($_GET['telp'])) { echo strtoupper($_GET['telp']); } ?></h3>
-          <h3><?php if(isset($_GET['nppas'])) { echo strtoupper($_GET['nppas']); } ?></h3>
-          <h3 style="color:red"><?php if(isset($_GET['noantri'])) { echo strtoupper($_GET['noantri']); } ?></h3>
+          <h3>Nama Pasien : <?php if(isset($_GET['nama'])) { echo strtoupper($_GET['nama']); } ?></h3>
+          <h3>Email Pasien : <?php if(isset($_GET['email'])) { echo strtoupper($_GET['email']); } ?></h3>
+          <h3>Email Pasien : <?php if(isset($_GET['email'])) { echo strtoupper($_GET['alamat']); } ?></h3>
+          <h3>Nomor Telepon : <?php if(isset($_GET['telp'])) { echo $_GET['telp']; } ?></h3>
+          <h3>Nomor Paseien : <?php if(isset($_GET['nppas'])) { echo strtoupper($_GET['nppas']); } ?></h3>
+          <h3 style="color:red">Nomor Antrean : <?php if(isset($_GET['noantri'])) { echo strtoupper($_GET['noantri']); } ?></h3>
         </div><!--/.center-->
       </div><!--/.box-->
     </div><!--/.container-->
