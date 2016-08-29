@@ -25,11 +25,11 @@ CREATE TABLE `antrian_tb` (
   `no_antri` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id_antri`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 /*Data for the table `antrian_tb` */
 
-insert  into `antrian_tb`(`id_antri`,`no_antri`,`tanggal`) values (20,1,'2016-08-14'),(21,2,'2016-08-14'),(22,3,'2016-08-14'),(23,4,'2016-08-14'),(24,5,'2016-08-14'),(25,6,'2016-08-14'),(26,7,'2016-08-14');
+insert  into `antrian_tb`(`id_antri`,`no_antri`,`tanggal`) values (28,1,'2016-08-28'),(29,2,'2016-08-28'),(30,3,'2016-08-28');
 
 /*Table structure for table `pasien_tb` */
 
@@ -38,16 +38,17 @@ DROP TABLE IF EXISTS `pasien_tb`;
 CREATE TABLE `pasien_tb` (
   `id_pasien` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) DEFAULT NULL,
+  `alamat` text,
   `email` varchar(100) DEFAULT NULL,
   `telepon` varchar(20) DEFAULT NULL,
   `status` enum('1','2') DEFAULT NULL,
   `sekarang` datetime DEFAULT NULL,
   PRIMARY KEY (`id_pasien`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pasien_tb` */
 
-insert  into `pasien_tb`(`id_pasien`,`nama`,`email`,`telepon`,`status`,`sekarang`) values (33,'kucrut','kucrut@budi.com','13526278','1','2016-08-14 02:10:01');
+insert  into `pasien_tb`(`id_pasien`,`nama`,`alamat`,`email`,`telepon`,`status`,`sekarang`) values (35,'Pasien 1','pasien1@yahoo.com','sds','11111111','1','2016-08-28 02:40:44'),(36,'Pasien 2 edit','Alamat Pasien 2','pasien2@yahoo.com','222222 Edit','1','2016-08-28 05:53:09');
 
 /*Table structure for table `pesan_tb` */
 
@@ -75,11 +76,11 @@ CREATE TABLE `rekmedik_tb` (
   `sekarang` date DEFAULT NULL,
   `status` enum('1','2') DEFAULT NULL,
   PRIMARY KEY (`id_rekmedik`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `rekmedik_tb` */
 
-insert  into `rekmedik_tb`(`id_rekmedik`,`id_pasien`,`tensi`,`diagnosa`,`sekarang`,`status`) values (1,33,'120/80','Skripsi geblek','2016-08-14','1'),(2,33,'120/80','wewe','2016-08-14','1'),(3,33,'120/80','qwq','2016-08-14','1'),(4,33,'120/80','asas','2016-08-14','1'),(5,33,'120/80','aASS','2016-08-14','1'),(6,33,'120/80','asas','2016-08-14','1'),(7,33,'150/212','asas','2016-08-14','1'),(8,33,'120/80','pacul gila','2016-08-14','1'),(9,33,'120/80','dddd','2016-08-14','1');
+insert  into `rekmedik_tb`(`id_rekmedik`,`id_pasien`,`tensi`,`diagnosa`,`sekarang`,`status`) values (10,36,'test','tes','2016-08-28','1'),(11,35,'tes 35','35','2016-08-28','1');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
